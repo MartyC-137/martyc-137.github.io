@@ -35,7 +35,9 @@ select
 ```
 The query that inspired this post was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. This felt like the perfect time for a redesign - turns out there is a much better way to do this in Snowflake! 
 
-Here is a basic example that accomplishes the same as above. The code loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
+Here is a basic example that accomplishes the same as above. Snowflake supports [for loops](https://docs.snowflake.com/en/developer-guide/snowflake-scripting/loops.html#label-snowscript-loop-for), and by using the [`resultset`](https://docs.snowflake.com/en/developer-guide/snowflake-scripting/resultsets.html) keyword in a for loop, you can return a table similar to a `select` statement. 
+
+The code below loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a `resultset`:
 
 ```sql
 set ro = 'sysadmin';
@@ -51,6 +53,9 @@ use schema identifier($sch);
 declare
     sql varchar;
     final_sql varchar;
+    /* The results of the organization cursor
+    should return the database names you want to
+    loop over */
     organization cursor for (select COMPANY_NAME from MY_TABLE);
     my_results resultset;
 begin
