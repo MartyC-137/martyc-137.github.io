@@ -73,8 +73,8 @@ author:
   avatar : "/assets/images/bike_selfie.jpg"
   bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
   links:
-    - label: "StackOverflow"
-      icon: "fa-brands fa-stack-overflow"
+    - label: "Stack Overflow"
+      icon: "fab fa-stack-overflow"
       url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -83,13 +83,13 @@ author:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
     - label: "Medium"
-      icon: "fa-brands fa-medium"
+      icon: "fab fa-medium"
       url: "https://medium.com/@martinp303"
 
 footer:
   links:
-    - label: "StackOverflow"
-      icon: "fa-brands fa-stack-overflow"
+    - label: "Stack Overflow"
+      icon: "fab fa-stack-overflow"
       url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -98,7 +98,7 @@ footer:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
     - label: "Medium"
-      icon: "fa-brands fa-medium"
+      icon: "fab fa-medium"
       url: "https://medium.com/@martinp303"
 
 defaults:
