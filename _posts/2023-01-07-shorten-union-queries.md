@@ -4,8 +4,7 @@ date: 2023-01-07T13:18:30-04:00
 categories:
   - blog
 tags:
-  - Jekyll
-  - update
+  - Snowflake
 ---
 
 Recently I was trying to reduce the size of a large union query in Snowflake where the only thing that changed between the queries was the schema name. If you work with SQL professionally, you've probably encountered something like this:
