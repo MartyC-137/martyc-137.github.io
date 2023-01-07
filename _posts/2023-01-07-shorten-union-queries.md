@@ -22,15 +22,6 @@ select
 
 union all
 
-select 
-    'COMPANY_NAME' as Company
-  , GL.ACTNUM as Account_Number
-  , ACT.DESCRIPTION as Account_Name
-  from COMPANY_NAME2.General_Ledger_Table GL 
-
-  inner join COMPANY_NAME2.Account_Name_Table ACT
-      on ACT.ID = GL.ID
-
 ...
 
 select 
@@ -42,9 +33,9 @@ select
   inner join COMPANY_NAME17.Account_Name_Table ACT
       on ACT.ID = GL.ID
 ```
-The query that inspired this post was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. Turns out there is a much better way to do this in Snowflake! 
+The query that inspired this post was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. This felt like the perfect time for a redesign - turns out there is a much better way to do this in Snowflake! 
 
-Here is a basic example that accomplishes the same as above, by looping over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
+Here is a basic example that accomplishes the same as above. The code loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
 
 ```sql
 set ro = 'sysadmin';
@@ -87,4 +78,4 @@ begin
     return table(my_results);
 end;
 ```
-Using similar logic I was able to reduce a 300 line production query to ~40 lines of code! 
+Note that this is a simplified example for the purposes of this blog. Using similar logic I was able to reduce a 300 line production query to ~40 lines of code! 
