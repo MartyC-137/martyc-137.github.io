@@ -32,7 +32,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   skiing and learning every day.
 
 github_username: MartyC-137
-minimal_mistakes_skin: default
+minimal_mistakes_skin: dark
 search: true
 
 # Build settings
@@ -72,7 +72,7 @@ author:
   name   : "Martin Palkovic"
   avatar : "/assets/images/bike_circle.jpeg"
   round-avatar: true
-  bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
+  bio    : "Howdy! I'm Martin. I'm a data engineer in Canada. My favourite tools are Python and Snowflake."
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
