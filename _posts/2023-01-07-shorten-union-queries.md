@@ -44,7 +44,7 @@ select
 ```
 The query that inspired this post was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. Turns out there is a much better way to do this in Snowflake! 
 
-Here is a basic example that loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
+Here is a basic example that accomplishes the same as above, by looping over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
 
 ```sql
 set ro = 'sysadmin';
