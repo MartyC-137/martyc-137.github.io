@@ -90,7 +90,7 @@ author:
       url: "https://www.facebook.com/profile.php?id=100025077793438"
     - label: "Medium"
       icon: "fab fa-fw fa-medium"
-      url: "https://medium.com/@martinp303"
+      url: "https://martinp303.medium.com/"
 
 footer:
   links:
@@ -111,7 +111,7 @@ footer:
       url: "https://www.facebook.com/profile.php?id=100025077793438"
     - label: "Medium"
       icon: "fab fa-fw fa-medium"
-      url: "https://medium.com/@martinp303"
+      url: "https://martinp303.medium.com/"
 
 defaults:
   # _posts
