@@ -95,7 +95,7 @@ author:
       icon: "fab fa-fw fa-medium"
       url: "https://martinp303.medium.com/"
     - label: "Resume"
-      icon: "fab-regular fa-fw fa-file"
+      icon: "fab fa-fw fa-clipboard"
       url: "https://my.visualcv.com/martin-palkovic/"
 
 footer:
@@ -119,7 +119,7 @@ footer:
       icon: "fab fa-fw fa-medium"
       url: "https://martinp303.medium.com/"
     - label: "Resume"
-      icon: "fab fa-fw fa-file"
+      icon: "fab fa-fw fa-clipboard"
       url: "https://my.visualcv.com/martin-palkovic/"
 
 defaults:
