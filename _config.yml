@@ -34,6 +34,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 github_username: MartyC-137
 minimal_mistakes_skin: default
 search: true
+future: true
+timezone: America/Halifax
 
 # Build settings
 markdown: kramdown
