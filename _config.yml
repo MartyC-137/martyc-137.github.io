@@ -91,11 +91,11 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook"
       url: "https://www.facebook.com/profile.php?id=100025077793438"
-    # - label: "Medium"
-    #   icon: "fab fa-fw fa-medium"
-    #   url: "https://martinp303.medium.com/"
+    - label: "Medium"
+      icon: "fab fa-fw fa-medium"
+      url: "https://martinp303.medium.com/"
     - label: "Resume"
-      icon: "fab fa-fw fa-file-lines"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://my.visualcv.com/martin-palkovic/"
 
 footer:
@@ -115,11 +115,11 @@ footer:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook"
       url: "https://www.facebook.com/profile.php?id=100025077793438"
-    # - label: "Medium"
-    #   icon: "fab fa-fw fa-medium"
-    #   url: "https://martinp303.medium.com/"
+    - label: "Medium"
+      icon: "fab fa-fw fa-medium"
+      url: "https://martinp303.medium.com/"
     - label: "Resume"
-      icon: "fab fa-fw fa-file-lines"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://my.visualcv.com/martin-palkovic/"
 
 defaults:
