@@ -89,7 +89,7 @@ author:
 footer:
   links:
     - label: "StackOverflow"
-      icon: "fa-brands fa-stack-overflow"
+      icon: "fab fa-fw fa-stack-overflow"
       url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -98,7 +98,7 @@ footer:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
     - label: "Medium"
-      icon: "fa-brands fa-medium"
+      icon: "fab fa-fw fa-medium"
       url: "https://medium.com/@martinp303"
 
 defaults:
