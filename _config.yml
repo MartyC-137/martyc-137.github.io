@@ -74,7 +74,7 @@ author:
   bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
   links:
     - label: "LinkedIn"
-      icon: "fab fa-fw linkedin"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "Stack Overflow"
       icon: "fab fa-fw fa-stack-overflow"
@@ -92,7 +92,7 @@ author:
 footer:
   links:
     - label: "LinkedIn"
-      icon: "fab fa-fw linkedin"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "Stack Overflow"
       icon: "fab fa-fw fa-stack-overflow"
