@@ -74,7 +74,7 @@ author:
   name   : "Martin Palkovic"
   avatar : "/assets/images/bike_circle.jpeg"
   round-avatar: true
-  bio    : "Hello, I'm Martin. I'm a data engineer, mountain biker and dad living in Canada."
+  bio    : "Hello, I'm Martin. I'm a data engineer, mountain biker and new dad living in Canada."
   links:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
