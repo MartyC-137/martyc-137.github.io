@@ -70,8 +70,8 @@ plugins:
 
 author:
   name   : "Martin Palkovic"
-  avatar : "/assets/images/bike_selfie.jpg"
-  round-avatar: false
+  avatar : "/assets/images/bike_selfie_square.jpg"
+  round-avatar: true
   bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
   links:
     - label: "LinkedIn"
