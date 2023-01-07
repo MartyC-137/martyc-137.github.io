@@ -13,14 +13,25 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: MM
-email:
+title: Martin Palkovic
+email: martin@palkovic.org
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-twitter_username: username
-github_username: username
+  Howdy! I’m Martin, I'm a Data Engineer at Cooke Aquaculture. 
+  I provide the organization with clean data for operational 
+  and analytical reporting. I play a role in everything that entails - 
+  getting the data from APIs, building and maintaining data pipelines, 
+  writing tons of SQL, cleaning data, creating data models, and occasionally, 
+  developing business intelligence reports. My favourite tools these days 
+  are Snowflake and Python.
+
+  My technical skills include SQL (Snowflake, SQL Server), Python, Git, Bash, 
+  Docker, Boomi, Azure, Markdown, Power BI and Excel.
+
+  In my free time I’m an avid mountain biker, DIYer and new dad. 
+  I also enjoy video games, board games, hanging out with my daughter, 
+  skiing and learning every day.
+
+github_username: MartyC-137
 minimal_mistakes_skin: default
 search: true
 
@@ -58,34 +69,37 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
-  avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  name   : "Martin Palkovic"
+  avatar : "/assets/images/bike_selfie.jpg"
+  bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "StackOverflow"
+      icon: "fa-brands fa-stack-overflow"
+      url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/MartyC-137"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
+    - label: "Medium"
+      icon: "fa-brands fa-medium"
+      url: "https://medium.com/@martinp303"
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "StackOverflow"
+      icon: "fa-brands fa-stack-overflow"
+      url: "https://stackoverflow.com/users/15417368/marty-c137"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/MartyC-137"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/"
+    - label: "Medium"
+      icon: "fa-brands fa-medium"
+      url: "https://medium.com/@martinp303"
 
 defaults:
   # _posts
