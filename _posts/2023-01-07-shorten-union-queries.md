@@ -8,9 +8,43 @@ tags:
   - update
 ---
 
-Recently I was trying to reduce the size of a large union query in Snowflake where the only thing that changed between the queries was the schema name. The query was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. Everytime I'd encounter a production query like, I thought, there has to be a better way. Turns out there is in Snowflake!
+Recently I was trying to reduce the size of a large union query in Snowflake where the only thing that changed between the queries was the schema name. If you work with SQL professionally, you've probably encountered something like this:
 
-I came up with this logic - here is a basic example that loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
+```sql
+select 
+    'COMPANY_NAME' as Company
+  , GL.ACTNUM as Account_Number
+  , ACT.DESCRIPTION as Account_Name
+  from COMPANY_NAME1.General_Ledger_Table GL 
+
+  inner join COMPANY_NAME1.Account_Name_Table ACT
+      on ACT.ID = GL.ID
+
+union all
+
+select 
+    'COMPANY_NAME' as Company
+  , GL.ACTNUM as Account_Number
+  , ACT.DESCRIPTION as Account_Name
+  from COMPANY_NAME2.General_Ledger_Table GL 
+
+  inner join COMPANY_NAME2.Account_Name_Table ACT
+      on ACT.ID = GL.ID
+
+...
+
+select 
+    'COMPANY_NAME' as Company
+  , GL.ACTNUM as Account_Number
+  , ACT.DESCRIPTION as Account_Name
+  from COMPANY_NAME17.General_Ledger_Table GL 
+
+  inner join COMPANY_NAME17.Account_Name_Table ACT
+      on ACT.ID = GL.ID
+```
+The query that inspired this post was originally a SQL Server query, but with Fivetran, we've now pushed all of our data up to Snowflake. Turns out there is a much better way to do this in Snowflake! 
+
+Here is a basic example that loops over a list of company names (the results of the 'organization' cursor in the below example), unions the results together, and then returns the final results using a resultset:
 
 ```sql
 set ro = 'sysadmin';
