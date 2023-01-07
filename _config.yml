@@ -70,7 +70,7 @@ plugins:
 
 author:
   name   : "Martin Palkovic"
-  avatar : "/assets/images/parkview_circle.png"
+  avatar : "/assets/images/bike_circle.jpeg"
   round-avatar: true
   bio    : "Howdy! I'm Martin. I'm a data engineer in Canada."
   links:
