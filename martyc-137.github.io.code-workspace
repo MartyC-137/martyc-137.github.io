@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../Data-Engineering"
+		},
+		{
+			"path": "../minimal-mistakes"
 		}
 	],
 	"settings": {}
