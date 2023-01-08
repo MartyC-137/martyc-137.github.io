@@ -1,5 +1,5 @@
 ---
-title: "How to backload JSON data to Snowflake using Snowpark for Python"
+title: "Backloading json data to Snowflake using Snowpark for Python"
 date: 2023-01-07T20:13:30-04:00
 categories:
   - blog
