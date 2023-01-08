@@ -28,9 +28,9 @@ base0F: "be5046"
 # $base07: #c8ccd4 !default;
 # $base08: #e06c75 !default;
 # $base09: #d19a66 !default;
-# $base0A: #e5c07b !default;
-# $base0B: #98c379 !default;
-# $base0C: #56b6c2 !default;
-# $base0D: #61afef !default;
-# $base0E: #c678dd !default;
-# $base0F: #be5046 !default;
+# $base0a: #e5c07b !default;
+# $base0b: #98c379 !default;
+# $base0c: #56b6c2 !default;
+# $base0d: #61afef !default;
+# $base0e: #c678dd !default;
+# $base0f: #be5046 !default;

@@ -58,13 +58,7 @@ def snowpark_cnxn(account, user, password, role, warehouse, database, schema):
     session = Session.builder.configs(connection_parameters).create()
     return session
 
-session = snowpark_cnxn(account,
-                        user,
-                        password,
-                        role,
-                        warehouse,
-                        database,
-                        schema)
+session = snowpark_cnxn(account, user, password, role, warehouse, database, schema)
 
 print(session.sql('SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_SCHEMA()').collect())
 

@@ -28,9 +28,9 @@ base0F: "FF5370"
 # $base07: #FFFFFF !default;
 # $base08: #F07178 !default;
 # $base09: #F78C6C !default;
-# $base0A: #FFCB6B !default;
-# $base0B: #C3E88D !default;
-# $base0C: #89DDFF !default;
-# $base0D: #82AAFF !default;
-# $base0E: #C792EA !default;
-# $base0F: #FF5370 !default;
+# $base0a: #FFCB6B !default;
+# $base0b: #C3E88D !default;
+# $base0c: #89DDFF !default;
+# $base0d: #82AAFF !default;
+# $base0e: #C792EA !default;
+# $base0f: #FF5370 !default;
