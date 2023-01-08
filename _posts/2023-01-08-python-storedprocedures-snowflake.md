@@ -203,7 +203,7 @@ def print_differences(session: snowflake.snowpark.Session,
 
 ```
 
-then, we execute the `sproc.register` method to register the stored procedure in Snowflake:
+Execute the `sproc.register` method to register the stored procedure in Snowflake:
 
 ```py
 session.add_packages('snowflake-snowpark-python')
@@ -356,3 +356,6 @@ print(x, '\n')
 df = pd.DataFrame({'Differences': x.split(',')})
 print(df)
 ```
+
+Cheers! :cowboy_hat_face: 
+Martin
