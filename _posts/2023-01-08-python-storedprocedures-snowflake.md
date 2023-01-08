@@ -146,6 +146,15 @@ print(session.sql("""select current_warehouse(),
                     current_schema()""").collect())
 ```
 
+In the previous block of code, my Snowflake credentials are hidden in a `.env` file, and I load them into the python script using the `python-dotenv` library. 
+
+Since the `.env` file contains your Snowflake secrets, you don't want to add it to your cloud repo! Make sure you add `.env` to your `gitignore` by running the following command in a terminal:
+
+```bash
+cd <your_repo>
+echo '.env' >> .gitignore
+```
+
 Next, we'll use the `sql` method to execute our `CREATE` and `INSERT` DDL:
 
 ```py
