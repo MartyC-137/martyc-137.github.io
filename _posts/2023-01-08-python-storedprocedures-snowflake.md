@@ -12,14 +12,14 @@ A really great feature of Snowflake is the ability to write stored procedures an
 You can then use these stored procedures or functions to operate on your Snowflake objects.
 
 One thing I frequently do is compare one field to another, to determine if something exists in one dataset but not another. Does one table contain sales orders, pallet numbers, or report ID's that the other table 
-does not? This question comes up frequently for projects, troubleshooting etc. and it dawned on me that it
+does not? This question comes up frequently for projects, troubleshooting reports, etc. and it dawned on me that it
 would be great to have the ability to streamline this entirely within Snowflake.
  
 I'll be using the Snowflake UI, as well as Snowpark for Python in this example. To set up your Snowpark environment, please refer to the [official Snowflake documentation](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup.html) on the topic.
 
-Below is a minimum reproducible example that will run in Snowflake to proof out this functionality. Although this is a rudimentary example, you can see how this quickly becomes a powerful tool. In a production environment, perhaps a sales order or item is missing from one report but present in another dataset.
+Below is a minimum reproducible example that will run in Snowflake to proof out this functionality. Although this is a rudimentary example, you can see how this quickly becomes a powerful troubleshooting tool. In a production environment, perhaps a sales order or item is missing from one report but present in another dataset.
 
-In this example, we create two tables containing fruits and the amount of that fruit. We then create a stored procedure that we can call to determine which fruits exist in one table, but not the other:
+In this example, we create two tables containing fruits and the amount of that fruit. We then create a stored procedure that we can call to determine which fruits exist in one table, but not the other. Note that this is pure SQL and runs against the Snowflake UI:
 
 ```sql
 set ro = 'sysadmin';
@@ -32,17 +32,36 @@ use warehouse identifier($wh);
 use database identifier($db);
 use schema identifier($sch);
 
-create or replace table mytable(amount number comment 'fake amounts for testing', fruits string comment 'fake types of fruit for testing');
+create or replace table mytable(amount number comment 'fake amounts for testing', 
+                                fruits string comment 'fake types of fruit for testing');
 create or replace table mytable2 like mytable;
     
-insert into mytable values (1, 'apple'),(2, 'orange'),(5, 'grape'),(7, 'cantelope'),(9, 'pineapple'),(17, 'banana'),(21, 'tangerine');
-insert into mytable2 values (1, 'apple'),(3, 'orange'),(5, 'grape'),(7, 'strawberry'),(10, 'pineapple'),(17, 'banana'),(22, 'raspberry');
+insert into mytable values 
+(1, 'apple'),
+(2, 'orange'),
+(5, 'grape'),
+(7, 'cantelope'),
+(9, 'pineapple'),
+(17, 'banana'),
+(21, 'tangerine');
+
+insert into mytable2 values 
+(1, 'apple'),
+(3, 'orange'),
+(5, 'grape'),
+(7, 'strawberry'),
+(10, 'pineapple'),
+(17, 'banana'),
+(22, 'raspberry');
 
 /* testing */
 -- select * from mytable;
 -- select * from mytable2;
 
-create or replace procedure print_differences(TABLE1 string, TABLE2 string, FIELD1 string, FIELD2 string)
+create or replace procedure print_differences(TABLE1 string, 
+                                            TABLE2 string, 
+                                            FIELD1 string, 
+                                            FIELD2 string)
 returns array
 language python 
 runtime_version = '3.8'
@@ -52,7 +71,11 @@ as
 $$
 import pandas as pd
 
-def print_differences(session, table1: str,table2: str,field1: str,field2: str):
+def print_differences(session, 
+                    table1: str,
+                    table2: str,
+                    field1: str,
+                    field2: str):
 
     #read the tables into a snowpark dataframe
     table1 = session.table(table1)
@@ -62,7 +85,7 @@ def print_differences(session, table1: str,table2: str,field1: str,field2: str):
     df1 = table1.to_pandas()
     df2 = table2.to_pandas()
 
-    # convert the the fields of interest from each table to a list
+    # convert the fields of interest from each table to a list
     list1 = df1[field1].to_list()
     list2 = df2[field2].to_list()
 
@@ -110,24 +133,51 @@ def snowpark_cnxn(account, user, password, role, warehouse, database, schema):
     session = Session.builder.configs(connection_parameters).create()
     return session
 
-session = snowpark_cnxn(account, user, password, role, warehouse, database, schema)
+session = snowpark_cnxn(account, 
+                        user, 
+                        password, 
+                        role, 
+                        warehouse, 
+                        database, 
+                        schema)
 
-print(session.sql('select current_warehouse(), current_database(), current_schema()').collect())
+print(session.sql("""select current_warehouse(), 
+                    current_database(), 
+                    current_schema()""").collect())
 ```
 
 Next, we'll use the `sql` method to execute our `CREATE` and `INSERT` DDL:
 
 ```py
-session.sql("""create or replace table mytable(amount number comment 'fake amounts for testing', fruits string comment 'fake types of fruit for testing')""").show()
+session.sql("""create or replace table mytable(amount number comment 'fake amounts for testing', 
+                                                fruits string comment 'fake types of fruit for testing')""").show()
 session.sql("""create or replace table mytable2 like mytable""").show()
-session.sql("""insert into mytable values (1, 'apple'),(2, 'orange'),(5, 'grape'),(7, 'cantelope'),(9, 'pineapple'),(17, 'banana'),(21, 'tangerine')""").show()
-session.sql("""insert into mytable2 values (1, 'apple'),(3, 'orange'),(5, 'grape'),(7, 'strawberry'),(10, 'pineapple'),(17, 'banana'),(22, 'raspberry')""").show()
+session.sql("""insert into mytable values 
+                (1, 'apple'),
+                (2, 'orange'),
+                (5, 'grape'),
+                (7, 'cantelope'),
+                (9, 'pineapple'),
+                (17, 'banana'),
+                (21, 'tangerine')""").show()
+session.sql("""insert into mytable2 values 
+                (1, 'apple'),
+                (3, 'orange'),
+                (5, 'grape'),
+                (7, 'strawberry'),
+                (10, 'pineapple'),
+                (17, 'banana'),
+                (22, 'raspberry')""").show()
 ```
 
 Then, we simply define a function in Python just like we would any other function:
 
 ```py
-def print_differences(session: snowflake.snowpark.Session, table1: str,table2: str,field1: str,field2: str):
+def print_differences(session: snowflake.snowpark.Session, 
+                        table1: str,
+                        table2: str,
+                        field1: str,
+                        field2: str):
     # read the tables into a snowpark dataframe
     table1 = session.table(table1)
     table2 = session.table(table2)
@@ -152,7 +202,10 @@ session.add_packages('snowflake-snowpark-python')
 session.sproc.register(
     func = print_differences
   , return_type = StringType()
-  , input_types = [StringType(), StringType(), StringType(), StringType()]
+  , input_types = [StringType(), 
+                    StringType(), 
+                    StringType(), 
+                    StringType()]
   , is_permanent = True
   , name = 'PRINT_DIFFERENCES'
   , replace = True
@@ -164,7 +217,10 @@ You can return the data in a few ways, I prefer a tabular output so I like the s
 
 ```py
 # option 1: You can return the results on one line using the sql() method:
-session.sql('''call print_differences('MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')''').show()
+session.sql('''call print_differences('MYTABLE', 
+                                        'MYTABLE2', 
+                                        'FRUITS', 
+                                        'FRUITS')''').show()
 
 # option 2: Call stored procedure, print results as dataframe
 x = session.call('print_differences', 'MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')
@@ -216,15 +272,36 @@ def snowpark_cnxn(account, user, password, role, warehouse, database, schema):
     return session
 
 print('Connecting to Snowpark...\n')
-session = snowpark_cnxn(account, user, password, role, warehouse, database, schema)
+session = snowpark_cnxn(account, 
+                        user, 
+                        password, 
+                        role, 
+                        warehouse, 
+                        database, 
+                        schema)
 
 print(session.sql('select current_warehouse(), current_database(), current_schema()').collect(), '\n')
 print('Connected!\n')
 
-session.sql("""create or replace table mytable(amount number comment 'fake amounts for testing', fruits string comment 'fake types of fruit for testing')""").show()
+session.sql("""create or replace table mytable(amount number comment 'fake amounts for testing', 
+                                                fruits string comment 'fake types of fruit for testing')""").show()
 session.sql("""create or replace table mytable2 like mytable""").show()
-session.sql("""insert into mytable values (1, 'apple'),(2, 'orange'),(5, 'grape'),(7, 'cantelope'),(9, 'pineapple'),(17, 'banana'),(21, 'tangerine')""").show()
-session.sql("""insert into mytable2 values (1, 'apple'),(3, 'orange'),(5, 'grape'),(7, 'strawberry'),(10, 'pineapple'),(17, 'banana'),(22, 'raspberry')""").show()
+session.sql("""insert into mytable values 
+                (1, 'apple'),
+                (2, 'orange'),
+                (5, 'grape'),
+                (7, 'cantelope'),
+                (9, 'pineapple'),
+                (17, 'banana'),
+                (21, 'tangerine')""").show()
+session.sql("""insert into mytable2 values 
+                (1, 'apple'),
+                (3, 'orange'),
+                (5, 'grape'),
+                (7, 'strawberry'),
+                (10, 'pineapple'),
+                (17, 'banana'),
+                (22, 'raspberry')""").show()
 
 def print_differences(session: snowflake.snowpark.Session, table1: str,table2: str,field1: str,field2: str):
     # read the tables into a snowpark dataframe
@@ -248,7 +325,10 @@ print('Registering Stored Procedure with Snowflake...\n')
 session.sproc.register(
     func = print_differences
   , return_type = StringType()
-  , input_types = [StringType(), StringType(), StringType(), StringType()]
+  , input_types = [StringType(), 
+                    StringType(), 
+                    StringType(), 
+                    StringType()]
   , is_permanent = True
   , name = 'PRINT_DIFFERENCES'
   , replace = True
