@@ -10,14 +10,6 @@ tags:
 
 Recently I needed to backload a few years of json data from an API to Snowflake. This felt like a great opportunity to test out [Snowpark Python](https://docs.snowflake.com/en/developer-guide/snowpark/python/index.html)!
 
-In the code below, my Snowflake credentials are hidden in a `.env` file, and I load them into the python script using the `python-dotenv` library. 
-
-Since the `.env` file contains your Snowflake secrets, you don't want to add it to your cloud repo! Make sure you add `.env` to your `gitignore` by running the following command in a terminal:
-
-```bash
-cd <your_repo>
-echo '.env' >> .gitignore
-```
 
 The script below loops over a specified date range (in this case, 4 years, incremented by day), calls an API, and inserts a record into a Snowflake `VARIANT` table:
 
@@ -36,7 +28,6 @@ load_dotenv()
 account = os.getenv('SNOWFLAKE_ACCT')
 user = os.getenv('SNOWFLAKE_USER')
 password = os.getenv('SNOWFLAKE_PASSWORD')
-role = os.getenv('SNOWFLAKE_ROLE')
 role = 'SYSADMIN'
 warehouse = 'MY_WH'
 database = 'DEV'
@@ -89,4 +80,12 @@ for date in daterange(start_date, end_date):
                     CURRENT_TIMESTAMP();''').collect()
 ```
 
+In the code below, my Snowflake credentials are hidden in a `.env` file, and I load them into the python script using the `python-dotenv` library. 
+
+Since the `.env` file contains your Snowflake secrets, you don't want to add it to your cloud repo! Make sure you add `.env` to your `gitignore` by running the following command in a terminal:
+
+```bash
+cd <your_repo>
+echo '.env' >> .gitignore
+```
 Note that this did take ~15 minutes to run. For performance reasons, I'd probably look into placing the json file in an internal stage next time, and executing the [`COPY INTO`](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html) command to speed things up.
