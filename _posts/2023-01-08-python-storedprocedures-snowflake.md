@@ -99,7 +99,7 @@ call print_differences('MYTABLE2', 'MYTABLE', 'FRUITS', 'FRUITS');
 -- ["cantelope","tangerine"]
 ```
 
-You can also do this entirely in Python if you prefer, and the stored procedure will be saved in Snowflake. First, lets import our modules and connect to Snowpark:
+You can also do this entirely in Python if you prefer, and the stored procedure will be saved in Snowflake. I prefer this method as it allows you to easily print a tabular output. First, lets import our modules and connect to Snowpark:
 
 ```py
 import os, snowflake
