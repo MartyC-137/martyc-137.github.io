@@ -14,8 +14,6 @@ Recently I needed to backload a few years of json data from an API to Snowflake.
 The script below loops over a specified date range, calls an API for that day, and inserts a record into a Snowflake `VARIANT` table. The first thing we'll do is import our modules and authenticate to Snowpark:
 
 ```py
-
-# Import modules
 import os, json, requests
 
 from datetime import date, timedelta
@@ -24,7 +22,6 @@ from snowflake.snowpark import Session
 from dotenv import load_dotenv
 load_dotenv()
 
-# Establish Snowflake Connection using Snowpark
 account = os.getenv('SNOWFLAKE_ACCT')
 user = os.getenv('SNOWFLAKE_USER')
 password = os.getenv('SNOWFLAKE_PASSWORD')
@@ -65,21 +62,18 @@ echo '.env' >> .gitignore
 Next, I defined a function that will allow us to loop over a date range, incremented by days:
 
 ```py
-# Define a function so we can loop over a date range
 def daterange(start_date, end_date):
     for n in range(int((end_date - start_date).days)):
         yield start_date + timedelta(n)
 ```
 
-Finally, we can execute the for loop:
+Finally, we can execute the for loop. In this case I simply needed to pass the API key as a header in the API call, your mileage will definitely vary depending on the security requirements of your API:
 
 ```py
-# variables
 headers = {'APIKey': f'{api_key}'}       
 start_date = date(2019, 1, 1)
 end_date = date(2022, 12, 31)
 
-# Loop through 4 years worth of API data, insert into Snowflake VARIANT table
 for date in daterange(start_date, end_date):
     url = f'https://api.mywebsite.com/api/data?&startDate={start_date}&endDate={end_date}'
     response = requests.request("GET", url, headers=headers)
