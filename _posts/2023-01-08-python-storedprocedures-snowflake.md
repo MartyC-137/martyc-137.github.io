@@ -15,7 +15,7 @@ One thing I frequently do is compare one field to another, to determine if somet
 does not? This question comes up frequently for projects, troubleshooting etc. and it dawned on me that it
 would be great to have the ability to streamline this entirely within Snowflake.
  
-To set up your Snowpark environment, please refer to the [official Snowflake documentation](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup.html) on the topic.
+I'll be using the Snowflake UI, as well as Snowpark for Python in this example. To set up your Snowpark environment, please refer to the [official Snowflake documentation](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup.html) on the topic.
 
 Below is a minimum reproducible example that will run in Snowflake to proof out this functionality. Although this is a rudimentary example, you can see how this quickly becomes a powerful tool. In a production environment, perhaps a sales order or item is missing from one report but present in another dataset.
 
