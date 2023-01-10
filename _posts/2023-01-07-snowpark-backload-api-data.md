@@ -35,20 +35,28 @@ api_key = os.getenv('MY_API_KEY')
 
 def snowpark_cnxn(account, user, password, role, warehouse, database, schema):
     connection_parameters = {
-    "account": account,
-    "user": user,
-    "password": password,
-    "role": role,
-    "warehouse": warehouse,
-    "database": database,
-    "schema": schema
+    'account': account,
+    'user': user,
+    'password': password,
+    'role': role,
+    'warehouse': warehouse,
+    'database': database,
+    'schema': schema
    }
     session = Session.builder.configs(connection_parameters).create()
     return session
 
-session = snowpark_cnxn(account, user, password, role, warehouse, database, schema)
+session = snowpark_cnxn(account, 
+                        user, 
+                        password, 
+                        role, 
+                        warehouse, 
+                        database, 
+                        schema)
 
-print(session.sql('SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_SCHEMA()').collect())
+print(session.sql('''SELECT CURRENT_WAREHOUSE(), 
+                    CURRENT_DATABASE(), 
+                    CURRENT_SCHEMA()''').collect())
 ```
 
 In the previous block of code, my Snowflake credentials are hidden in a `.env` file, and I load them into the python script using the `python-dotenv` library. 
@@ -76,7 +84,7 @@ end_date = date(2022, 12, 31)
 
 for date in daterange(start_date, end_date):
     url = f'https://api.mywebsite.com/api/data?&startDate={start_date}&endDate={end_date}'
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request('GET', url, headers=headers)
     
     formatted_json = json.loads(response.text)
     formatted_json = json.dumps(formatted_json, indent = 4)
@@ -115,20 +123,28 @@ api_key = os.getenv('MY_API_KEY')
 
 def snowpark_cnxn(account, user, password, role, warehouse, database, schema):
     connection_parameters = {
-    "account": account,
-    "user": user,
-    "password": password,
-    "role": role,
-    "warehouse": warehouse,
-    "database": database,
-    "schema": schema
+    'account': account,
+    'user': user,
+    'password': password,
+    'role': role,
+    'warehouse': warehouse,
+    'database': database,
+    'schema': schema
    }
     session = Session.builder.configs(connection_parameters).create()
     return session
 
-session = snowpark_cnxn(account, user, password, role, warehouse, database, schema)
+session = snowpark_cnxn(account, 
+                        user, 
+                        password, 
+                        role, 
+                        warehouse, 
+                        database, 
+                        schema)
 
-print(session.sql('SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_SCHEMA()').collect())
+print(session.sql('''SELECT CURRENT_WAREHOUSE(), 
+                    CURRENT_DATABASE(), 
+                    CURRENT_SCHEMA()''').collect())
 
 def daterange(start_date, end_date):
     for n in range(int((end_date - start_date).days)):
@@ -142,7 +158,7 @@ end_date = date(2022, 12, 31)
 # Loop through 4 years worth of API data, insert into Snowflake VARIANT table
 for date in daterange(start_date, end_date):
     url = f'https://api.mywebsite.com/api/data?&startDate={start_date}&endDate={end_date}'
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request('GET', url, headers=headers)
     
     formatted_json = json.loads(response.text)
     formatted_json = json.dumps(formatted_json, indent = 4)
