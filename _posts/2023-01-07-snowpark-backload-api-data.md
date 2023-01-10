@@ -90,9 +90,9 @@ for date in daterange(start_date, end_date):
     formatted_json = json.dumps(formatted_json, indent = 4)
     
     # insert to Snowflake
-    session.sql(f'''INSERT INTO {target_table} (JSON_DATA, INSERT_DATE)
+    session.sql(f"""INSERT INTO {target_table} (JSON_DATA, INSERT_DATE)
                     SELECT PARSE_JSON('{formatted_json}'),
-                    CURRENT_TIMESTAMP();''').collect()
+                    CURRENT_TIMESTAMP();""").collect()
 ```
 
 Note that this did take ~15 minutes to run. For performance reasons, I'd probably look into placing the json file in an internal stage next time, and executing the [`COPY INTO`](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html) command to speed things up.
@@ -164,7 +164,7 @@ for date in daterange(start_date, end_date):
     formatted_json = json.dumps(formatted_json, indent = 4)
     
     # insert to Snowflake
-    session.sql(f'''INSERT INTO {target_table} (JSON_DATA, INSERT_DATE)
+    session.sql(f"""INSERT INTO {target_table} (JSON_DATA, INSERT_DATE)
                     SELECT PARSE_JSON('{formatted_json}'),
-                    CURRENT_TIMESTAMP();''').collect()
+                    CURRENT_TIMESTAMP();""").collect()
 ```

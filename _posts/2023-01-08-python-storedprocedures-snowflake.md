@@ -158,25 +158,25 @@ echo '.env' >> .gitignore
 Next, we'll use the `sql` method to execute our `CREATE` and `INSERT` DDL:
 
 ```py
-session.sql('''create or replace table mytable(amount number comment 'fake amounts for testing', 
-                                                fruits string comment 'fake types of fruit for testing')''').show()
-session.sql('''create or replace table mytable2 like mytable''').show()
-session.sql('''insert into mytable values 
+session.sql("""create or replace table mytable(amount number comment 'fake amounts for testing', 
+                                                fruits string comment 'fake types of fruit for testing')""").show()
+session.sql("""create or replace table mytable2 like mytable""").show()
+session.sql("""insert into mytable values 
                 (1, 'apple'),
                 (2, 'orange'),
                 (5, 'grape'),
                 (7, 'cantelope'),
                 (9, 'pineapple'),
                 (17, 'banana'),
-                (21, 'tangerine')''').show()
-session.sql('''insert into mytable2 values 
+                (21, 'tangerine')""").show()
+session.sql("""insert into mytable2 values 
                 (1, 'apple'),
                 (3, 'orange'),
                 (5, 'grape'),
                 (7, 'strawberry'),
                 (10, 'pineapple'),
                 (17, 'banana'),
-                (22, 'raspberry')''').show()
+                (22, 'raspberry')""").show()
 ```
 
 Then, we simply define a function in Python just like we would any other function:
@@ -226,10 +226,10 @@ You can return the data in a few ways, I prefer a tabular output so I like the s
 
 ```py
 # option 1: You can return the results on one line using the sql() method:
-session.sql('''call print_differences('MYTABLE', 
+session.sql("""call print_differences('MYTABLE', 
                                         'MYTABLE2', 
                                         'FRUITS', 
-                                        'FRUITS')''').show()
+                                        'FRUITS')""").show()
 
 # option 2: Call stored procedure, print results as dataframe
 x = session.call('print_differences', 'MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')
@@ -349,7 +349,7 @@ session.sproc.register(
 print('Stored Procedure registered with Snowflake!\n')
 
 # You can return the results on one line using the sql() method:
-# session.sql('''call print_differences('MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')''').show()
+# session.sql("""call print_differences('MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')""").show()
 
 # call stored procedure, print results as dataframe
 x = session.call('print_differences', 'MYTABLE', 'MYTABLE2', 'FRUITS', 'FRUITS')
