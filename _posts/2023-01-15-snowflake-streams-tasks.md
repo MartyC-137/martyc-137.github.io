@@ -10,6 +10,18 @@ tags:
 
 Snowflake [streams](https://docs.snowflake.com/en/user-guide/streams-intro.html) and [tasks](https://docs.snowflake.com/en/user-guide/tasks-intro.html) provide a mechanism for automatically updating one table, as soon as data is loaded into another table.A Snowflake stream tracks all data manipulation language (DML) changes to a table, and by wrapping a stored procedure inside of a Snowflake task, we can update another table based on the DML changes of another table.
 
+Something I commonly see in a production environment is views created from another view, simply to move the dataset to a different database or schema:
+
+```sql
+create or replace my_2nd_view
+as
+select
+...
+from my_first_view
+```
+[Nested views negatively affect performance](https://bornsql.ca/blog/nested-views-bad/), as views are computed at runtime. If you simply need to move a dataset from one location to another within Snowflake (for example, from staging to prod, or the databse you expose to end users), streams and tasks is a much better alternative.
+
+To start, lets set a few session variables and initialize our session: 
 ```sql
 /* Set session variables */
 set role_name = 'sysadmin';
@@ -25,7 +37,9 @@ set task_name = 'push_my_table';
 /* Initialize Environment */
 use role identifier($role_name);
 use warehouse identifier($wh)
-
+```
+Next, lets create our database, table, and stream objects:
+```sql
 /* Create database, table and stream objects */
 create database if not exists identifier($db);
 create schema if not exists identifier($sch);
@@ -43,7 +57,21 @@ comment = 'CDC stream from source table to prod table';
 /* quick diagnostic check */
 show streams;
 select * from identifier($stream_name);
+```
+A Snowflake stream is a schema level object that contains the same fields as your source table, but also includes the following fields:
 
+* `METADATA$ACTION`: Specifies whether the action is an `INSERT` or a `DELETE`
+* `METADATA$ISUPDATE`: Specifies whether the `INSERT` or `DELETE` is part of an `UPDATE`
+* `METADATA$ROW_ID`: A unique row ID. This ID can be used to track changes to specific rows over time
+
+So, in our basic example above, here is how the results of `select * from identifier($stream_name);` would look:
+
+| NAME | AMOUNT | METADATA\$ACTION | METADATA\$ISUPDATE | METADATA\$ROW_ID |
+| ---- | ------ | ---------------- | ------------------ | ---------------- |
+| John | 5 | INSERT | FALSE | 3d5ttsht47wssy8bv |
+
+CODE THREE
+```sql
 /* Create stored procedure */
 create or replace procedure identifier($proc_name)()
 returns varchar
