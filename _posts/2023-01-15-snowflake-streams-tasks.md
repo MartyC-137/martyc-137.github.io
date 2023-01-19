@@ -12,7 +12,7 @@ Snowflake [streams](https://docs.snowflake.com/en/user-guide/streams-intro.html)
 
 Something I commonly see in a production environment is views created from another view, simply to move the dataset to a different database or schema:
 
-```pgsql
+```sql
 create or replace my_2nd_view
 as
 select
@@ -22,7 +22,7 @@ from my_first_view
 [Nested views can negatively affect performance](https://bornsql.ca/blog/nested-views-bad/), as views are computed at runtime. If you simply need to move a dataset from one location to another within Snowflake (for example, from staging to prod, or the databse you expose to end users), using a streams and tasks workflow is a much better alternative.
 
 To start, lets set a few session variables and initialize our session: 
-```pgsql
+```sql
 /* Set session variables */
 set role_name = 'sysadmin';
 set wh = 'my_wh';
@@ -30,8 +30,7 @@ set db = 'my_db';
 set sch = 'my_schema';
 set dest_table = 'my_table';
 set stream_name = 'my_stream';
---Use the fully qualified name here if your source table is in a different db/schema
-set source_table = 'source_db.source_schema.source_table'; 
+set source_table = 'source_db.source_schema.source_table'; --Use the fully qualified name her if your source table is in a different db/schema
 set proc_name = 'my_procedure';
 set task_name = 'push_my_table';
 
@@ -41,7 +40,7 @@ use warehouse identifier($wh)
 ```
 Next, lets create our database, table, and stream objects. To reference a variable when creating a Snowflake object, wrap your variable inside `identifier` using `identifier($my_variable`):
 
-```pgsql
+```sql
 /* Create database, table and stream objects */
 create database if not exists identifier($db);
 create schema if not exists identifier($sch);
@@ -76,7 +75,7 @@ So, in our basic example above, here is how the results of `select * from identi
 
 Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. A unique identifier at the row level is required here, shown below at `json_data:ID`:
 
-```pgsql
+```sql
 /* Create stored procedure */
 create or replace procedure identifier($proc_name)()
 returns varchar
@@ -103,7 +102,7 @@ $$;
 ```
 
 Now, lets create a task, which calls our stored procedure once a minute:
-```pgsql
+```sql
 /* Create task */
 create or replace task identifier($task_name)
 warehouse = LOAD_WH
@@ -115,7 +114,7 @@ call my_procedure();
 ```
 
 Tasks are created in a paused state by default, we need to activate them. To do that, use the `ACCOUNTADMIN` role to `GRANT` `EXECUTE` on the task to your role of choice, then `ALTER` the task to resume:
-```pgsql
+```sql
 /* grant execute task priveleges to role sysadmin */
 use role accountadmin;
 grant execute task 
@@ -129,7 +128,7 @@ alter task identifier($task_name) resume;
 
 Finally, we can confirm everything is working:
 
-```pgsql
+```sql
 select * from identifier($my_table);
 
 show tasks;
@@ -142,7 +141,7 @@ You will now have a table in a different database, or schema (modify the code of
 
 Here is the full code, also located on my [Github](https://github.com/MartyC-137/Data-Engineering/blob/main/SQL/Snowflake_Basic_CDC_Pipeline_Using_Streams_Tasks.sql):
 
-```pgsql
+```sql
 /* Set session variables */
 set role_name = 'sysadmin';
 set wh = 'my_wh';
