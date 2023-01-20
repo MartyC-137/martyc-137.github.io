@@ -8,18 +8,18 @@ tags:
   - SQL
 ---
 
-Snowflake [streams](https://docs.snowflake.com/en/user-guide/streams-intro.html) and [tasks](https://docs.snowflake.com/en/user-guide/tasks-intro.html) provide a mechanism for automatically updating one table, as soon as data is loaded into another table.A Snowflake stream tracks all data manipulation language (DML) changes to a table, and by wrapping a stored procedure inside of a Snowflake task, we can update another table based on the DML changes of another table.
+Snowflake [streams](https://docs.snowflake.com/en/user-guide/streams-intro.html) and [tasks](https://docs.snowflake.com/en/user-guide/tasks-intro.html) provide a mechanism for automatically updating one table, as soon as data is loaded into another table. A Snowflake stream tracks all data manipulation language (DML) changes to a table, and by wrapping a stored procedure inside of a Snowflake task, we can update another table based on the DML changes of another table.
 
 Something I commonly see in a production environment is views created from another view, simply to move the dataset to a different database or schema:
 
 ```sql
-create or replace my_2nd_view
+create or replace destination_schema.my_2nd_view
 as
 select
 ...
-from my_first_view
+from source_schema.my_first_view
 ```
-[Nested views can negatively affect performance](https://bornsql.ca/blog/nested-views-bad/), as views are computed at runtime. If you simply need to move a dataset from one location to another within Snowflake (for example, from staging to prod, or the databse you expose to end users), using a streams and tasks workflow is a much better alternative.
+[Nested views can negatively affect performance](https://bornsql.ca/blog/nested-views-bad/), as views are computed at runtime. If you simply need to move a dataset from one location to another within Snowflake (for example, from staging to prod, or the databse you expose to end users), using a streams and tasks workflow is a much better alternative and will allow you to create a table rather than a view.
 
 To start, lets set a few session variables and initialize our session: 
 ```sql
@@ -30,13 +30,13 @@ set db = 'my_db';
 set sch = 'my_schema';
 set dest_table = 'my_table';
 set stream_name = 'my_stream';
-set source_table = 'source_db.source_schema.source_table'; --Use the fully qualified name her if your source table is in a different db/schema
+set source_table = 'source_db.source_schema.source_table'; --Use the fully qualified name here if your source table is in a different db/schema
 set proc_name = 'my_procedure';
 set task_name = 'push_my_table';
 
 /* Initialize Environment */
 use role identifier($role_name);
-use warehouse identifier($wh)
+use warehouse identifier($wh);
 ```
 Next, lets create our database, table, and stream objects. To reference a variable when creating a Snowflake object, wrap your variable inside `identifier` using `identifier($my_variable`):
 
@@ -73,7 +73,7 @@ So, in our basic example above, here is how the results of `select * from identi
 | ---- | ------ | ---------------- | ------------------ | ---------------- |
 | John | 5 | INSERT | FALSE | 3d5ttsht47wssy8bv |
 
-Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. A unique identifier at the row level is required here, shown below at `json_data:ID`:
+Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. A unique identifier at the row level is required here, shown below as `json_data:ID`:
 
 ```sql
 /* 
@@ -158,7 +158,7 @@ set task_name = 'push_my_table';
 
 /* Initialize Environment */
 use role identifier($role_name);
-use warehouse identifier($wh)
+use warehouse identifier($wh);
 
 /* Create database, table and stream objects */
 create database if not exists identifier($db);
