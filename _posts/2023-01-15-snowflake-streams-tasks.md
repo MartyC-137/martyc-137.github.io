@@ -73,7 +73,7 @@ So, in our basic example above, here is how the results of `select * from identi
 | ---- | ------ | ---------------- | ------------------ | ---------------- |
 | John | 5 | INSERT | FALSE | 3d5ttsht47wssy8bv |
 
-Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. A unique identifier at the row level is required here, shown below as `json_data:ID`:
+Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. Note that session variables can be used inside of a stored procedure if the procedure is executed as `caller` - however, we don't want to do that in this case, because when the task runs later that calls the procedure, the session variable won't be active. A unique identifier at the row level is required here, shown below as `json_data:ID`:
 
 ```sql
 /* 
