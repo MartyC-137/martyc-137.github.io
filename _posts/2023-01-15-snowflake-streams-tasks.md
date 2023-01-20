@@ -76,7 +76,10 @@ So, in our basic example above, here is how the results of `select * from identi
 Next, lets create a stored procedure to house our code - in this case, we'll use the [`MERGE`](https://docs.snowflake.com/en/sql-reference/sql/merge.html) keyword, which will only incrementally load new records into our destination table from our source table. A unique identifier at the row level is required here, shown below at `json_data:ID`:
 
 ```sql
-/* Create stored procedure */
+/* 
+Create stored procedure - 
+tailor this to your needs
+*/
 create or replace procedure identifier($proc_name)()
 returns varchar
 language sql
@@ -176,7 +179,10 @@ comment = 'CDC stream from source table to prod table';
 show streams;
 select * from identifier($stream_name);
 
-/* Create stored procedure */
+/* 
+Create stored procedure - 
+tailor this to your needs
+*/
 create or replace procedure identifier($proc_name)()
 returns varchar
 language sql
