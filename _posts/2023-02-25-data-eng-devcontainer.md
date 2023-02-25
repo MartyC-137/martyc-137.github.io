@@ -9,19 +9,21 @@ tags:
   - SQL
   - dbt
 ---
-
-Recently I discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of adocker container, and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). We all know how difficult it can be to configure an environment, install all of the required dependencies for a project, etc, so I thought it would be great to set up a reproducible environment for my team to use at work. Specifically, setting up [`Snowpark`](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in devcontainers - it requires Python 3.8 specifically, the user needs to have anaconda installed, you have to install the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/) etc. Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
-
-This devcontainer has a data engineering flavour - It likely won't suit all of your needs but hopefully it will be a great starting point!
-
 ## Getting Started with Dev Containers
+
+Recently I discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of a docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my team to use at work. 
+
+Specifically, setting up [`Snowpark`](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in Dev Containers - it requires Python 3.8 anaconda, and the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/). Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
+
+This Dev Container has a data engineering flavour - It likely won't suit all of your needs but hopefully it will be a great starting point for you.
+
 Dev Containers require you to have [Docker](https://www.docker.com/products/docker-desktop/) installed OR use [GitHub Codespaces](https://github.com/features/codespaces). Codespaces is now free for individual use (60 hours/month) and is worth checking out if you haven't tried it.
 
 **Option 1: Local VS Code**
 
 1. Clone the [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) and connect to it in VS Code:
 
-```bash
+```sh
 $ cd your/desired/repo/location
 $ git clone https://github.com/MartyC-137/DataEng_devcontainer
 ```
@@ -46,7 +48,7 @@ $ git clone https://github.com/MartyC-137/DataEng_devcontainer
 
 ## Components of a Dev Container
 
-What is required for a Dev Container, and how does this work? When you have the [`Dev Containers`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed and are setting up any new projects, VS Code and GitHub Codespaces will automatically detect if you have a `.devcontainer` directory inside your repo. The main file it is looking for is a `devcontainer.json` file, although you can augment this with a `Dockerfile`, a `requirements.txt` for Python libraries, etc. In the `.devcontainer` directory from my [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) you'll see the following:
+When you have the [`Dev Containers`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed and are setting up a new project, VS Code and GitHub Codespaces will automatically detect if you have a `.devcontainer` directory inside your repo. It is looking for is a `devcontainer.json` file, although you can augment this with a `Dockerfile`, a `requirements.txt` etc. In the `.devcontainer` directory from my [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) you'll see the following:
 
 * `Dockerfile`
 * `devcontainer.json`
@@ -54,33 +56,30 @@ What is required for a Dev Container, and how does this work? When you have the 
 * `Microsoft.Powershell_profile.ps1`
 * `reuquirements.txt`
 
-the bulk of the `Dockerfile`, `config.fish` and `Microsoft.Powershell_profile.ps1` are used to configure a custom powershell Powershell environment, [Oh My Posh](https://github.com/JanDeDobbeleer/oh-my-posh). This application provides awesome Powershell themes and is a great way to take your terminal experience to the next level! You can check out the official Microsoft documentation [here](https://learn.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup) as well for customizing your powershell experience. I really love using the terminal now since starting to use Oh My Posh.
+the bulk of the `Dockerfile`, `config.fish` and `Microsoft.Powershell_profile.ps1` are used to configure a custom powershell Powershell environment, [Oh My Posh](https://github.com/JanDeDobbeleer/oh-my-posh). This application provides awesome Powershell themes and is a great way to take your terminal experience to the next level. You can check out the official Microsoft documentation [here](https://learn.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup). I really love using the terminal now since starting to use Oh My Posh.
 
 Here's an example of what Oh My Posh looks like, here I'm using the [clean-detailed theme](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/clean-detailed.omp.json):
 
-![image](/assets/images/oh-my-posh.png)
+![image](/assets/images/devcontainer_blog/oh-my-posh.png)
 
-The `Microsoft.Powershell_profile.ps1` is a configuration file that runs when Powershell starts. Please note that I copied this template from the [Oh My Posh repo](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/.devcontainer/Microsoft.PowerShell_profile.ps1) - you can add anything you like here to run when Powershell starts up. In mine, I've added one alias that seems to not work very well on Mac, but you can add anything you'd like to run here when Powershell starts.
+The `Microsoft.Powershell_profile.ps1` is a configuration file that runs when Powershell starts. Please note that I copied this template from the [Oh My Posh repo](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/.devcontainer/Microsoft.PowerShell_profile.ps1) - you can add anything you like here to run when Powershell starts up. In mine, I've added one alias that seems to not work on Mac, but you can add anything you'd like to run here when Powershell starts.
 
 The [Terminal Icons](https://github.com/devblackops/Terminal-Icons) theme is included in the Powershell profile - if you run the [`Get-ChildItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem?view=powershell-7.3) cmdlet inside of your devcontainer, you'll see the addition of icons for files:
 
-![image](/assets/images/terminal-icons.png)
+![image](/assets/images/devcontainer_blog/terminal-icons.png)
 
 Next, lets take a look at the `devcontainer.json` file. Here is what ours looks like for this project:
 
 ```json
 {
-	"name": "oh-my-posh",
+    "name": "oh-my-posh",
 	"build": {
-	  "dockerfile": "Dockerfile",
+        "dockerfile": "Dockerfile",
 	  "args": {
-		"VARIANT": "1.19-bullseye",
+          "VARIANT": "1.19-bullseye",
 		"POSH_THEME": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/clean-detailed.omp.json",
-  
-		// Override me with your own timezone:
+
 		"TZ": "America/Moncton",
-		// Use one of the "TZ database name" entries from:
-		// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   
 		"NODE_VERSION": "lts/*",
 		"PS_VERSION": "7.2.7"
@@ -89,11 +88,11 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 	"runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
 	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"version": "latest"
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "latest"
 		},
 		"ghcr.io/devcontainers/features/python:1": {
-			"version": "3.8"
+            "version": "3.8"
 		},
 		"ghcr.io/devcontainers-contrib/features/curl-apt-get:1": {},
 		"ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
@@ -102,37 +101,36 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-contrib/features/spark-sdkman:2": {
-			"jdkVersion": "11"
+            "jdkVersion": "11"
 		},
 		"ghcr.io/dhoeric/features/google-cloud-cli:1": {
-			"version": "latest"
+            "version": "latest"
 		}
 	  },
-  
-	// Set *default* container specific settings.json values on container create.
+
 	"customizations": {
-		"vscode": {
-			"settings": {
-			"go.toolsManagement.checkForUpdates": "local",
+        "vscode": {
+            "settings": {
+                "go.toolsManagement.checkForUpdates": "local",
 			"go.useLanguageServer": true,
 			"go.gopath": "/go",
 			"go.goroot": "/usr/local/go",
 			"terminal.integrated.profiles.linux": {
-				"bash": {
-				"path": "bash"
+                "bash": {
+                    "path": "bash"
 				},
 				"zsh": {
-				"path": "zsh"
+                    "path": "zsh"
 				},
 				"fish": {
-				"path": "fish"
+                    "path": "fish"
 				},
 				"tmux": {
-				"path": "tmux",
+                    "path": "tmux",
 				"icon": "terminal-tmux"
 				},
 				"pwsh": {
-				"path": "pwsh",
+                    "path": "pwsh",
 				"icon": "terminal-powershell"
 				}
 			},
@@ -147,7 +145,7 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 			},
 
 			"extensions": [
-				"ms-mssql.mssql",
+                "ms-mssql.mssql",
 				"snowflake.snowflake-vsc",
 				"golang.go",
 				"ms-vscode.powershell",
@@ -175,7 +173,6 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [3000],
   
-	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "pip3 install --user -r .devcontainer/requirements.txt --use-pep517",
 
 	"remoteUser": "vscode"
@@ -203,6 +200,7 @@ This file has a few key components:
     - `Python` tools
     - `Jupyter Notebooks`
     - GitHub Pull Requests
+    - GitLens
     - Popular VS Code Themes (GitHub, One Dark etc.)
     - `dbt` extensions
 * `postCreateCommand` - this line instructs our devcontainer to run the included `requirements.txt` file to `pip` install the following packages:
@@ -220,3 +218,7 @@ This file has a few key components:
     - `confluent-kafka`
     - `snowpark`
     - `scikit-learn`
+
+Here is what that looks like:
+
+![image](/assets/images/devcontainer_blog/vs-code_dc.png)
