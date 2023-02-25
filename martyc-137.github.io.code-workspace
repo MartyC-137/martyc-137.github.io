@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../minimal-mistakes"
+		},
+		{
+			"path": "../DataEng_devcontainer"
 		}
 	],
 	"settings": {}
