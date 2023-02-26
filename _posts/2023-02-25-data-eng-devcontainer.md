@@ -5,15 +5,12 @@ categories:
   - blog
 tags:
   - Docker
-  - Python
-  - SQL
-  - dbt
+  - VS Code
+  - GitHub
 ---
-## Getting Started with Dev Containers
-
 Recently I discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of a docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my team to use at work. 
 
-Specifically, setting up [`Snowpark`](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in Dev Containers - it requires Python 3.8 anaconda, and the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/). Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
+Specifically, setting up [`Snowpark`](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in Dev Containers - it requires Python 3.8, Anaconda, and the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/). Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
 
 This Dev Container has a data engineering flavour - It likely won't suit all of your needs but hopefully it will be a great starting point for you.
 
@@ -222,4 +219,4 @@ This file has a few key components:
 And there you have it! You've now got an awesome development environment set up. Happy Coding!
 
 <!-- ![image](/assets/images/devcontainer_blog/vs-code_dc.png) -->
-<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="1000" height="600">
+<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="1500" height="900">
