@@ -219,6 +219,6 @@ This file has a few key components:
     - `snowpark`
     - `scikit-learn`
 
-Here is what that looks like:
+And there you have it! You've now got an awesome development environment set up. Happy Coding!
 
 ![image](/assets/images/devcontainer_blog/vs-code_dc.png)
