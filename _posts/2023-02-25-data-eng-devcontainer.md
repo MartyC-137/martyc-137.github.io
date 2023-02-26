@@ -221,5 +221,5 @@ This file has a few key components:
 
 And there you have it! You've now got an awesome development environment set up. Happy Coding!
 
-![image](/assets/images/devcontainer_blog/vs-code_dc.png)
-<!-- <img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="1000" height="800"> -->
+<!-- ![image](/assets/images/devcontainer_blog/vs-code_dc.png) -->
+<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="1000" height="600">
