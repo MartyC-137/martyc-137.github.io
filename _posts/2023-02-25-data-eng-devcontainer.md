@@ -66,8 +66,8 @@ The `Microsoft.Powershell_profile.ps1` is a configuration file that runs when Po
 
 The [Terminal Icons](https://github.com/devblackops/Terminal-Icons) theme is included in the Powershell profile - if you run the [`Get-ChildItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem?view=powershell-7.3) cmdlet inside of your devcontainer, you'll see the addition of icons for files:
 
-![image](/assets/images/devcontainer_blog/terminal-icons.png | width=250)
-
+<!-- ![image](/assets/images/devcontainer_blog/terminal-icons.png) -->
+<img src="/assets/images/devcontainer_blog/terminal-icons.png" width="600" height="300">
 Next, lets take a look at the `devcontainer.json` file. Here is what ours looks like for this project:
 
 ```json
@@ -221,4 +221,5 @@ This file has a few key components:
 
 And there you have it! You've now got an awesome development environment set up. Happy Coding!
 
-![image](/assets/images/devcontainer_blog/vs-code_dc.png | width=250)
+<!-- ![image](/assets/images/devcontainer_blog/vs-code_dc.png) -->
+<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="600" height="300">
