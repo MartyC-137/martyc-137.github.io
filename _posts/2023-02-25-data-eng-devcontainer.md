@@ -216,7 +216,7 @@ This file has a few key components:
     - `snowpark`
     - `scikit-learn`
 
-And there you have it! You've now got an awesome development environment set up. Happy Coding!
+And there you have it! You've now got an awesome development environment set up that is easily reproducible for new projects, shareable with others, etc. Happy Coding!
 
 ![image](/assets/images/devcontainer_blog/vs-code_dc.png)
 <!-- <img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="1500" height="900"> -->
