@@ -222,4 +222,4 @@ This file has a few key components:
 And there you have it! You've now got an awesome development environment set up that is easily reproducible for new projects, shareable with others, etc. Happy Coding!
 
 <!-- ![image](/assets/images/devcontainer_blog/vs-code_dc.png) -->
-<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="2000">
+<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="2500">
