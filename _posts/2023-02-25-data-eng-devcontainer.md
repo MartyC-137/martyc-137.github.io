@@ -22,7 +22,7 @@ Dev Containers require you to have [Docker](https://www.docker.com/products/dock
 
 1. Clone the [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) and connect to it in VS Code:
 
-```powershell
+```shell
 $ cd your/desired/repo/location
 $ git clone https://github.com/MartyC-137/DataEng_devcontainer
 ```
