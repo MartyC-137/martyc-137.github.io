@@ -1,9 +1,8 @@
 ---
 title: "How I set up my Dev Container for Data Engineering"
-# tagline: "How to set up an awesome development environment for Data Engineering"
+tagline: "Setting up your environment can be a pain. Dev Containers make it easier"
 header:
-  image: /assets/images/docker.jpg
-#   overlay_image: /assets/images/docker.jpg
+  overlay_image: /assets/images/docker.jpg
   caption: "Photo credit: Ian Taylor on [**Unsplash**](https://unsplash.com)"
   actions:
     # - label: "Learn more"
@@ -17,7 +16,7 @@ tags:
   - GitHub
 ---
 
-I recently discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of a Docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my data engineering projects.
+[Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) allow you to open a directory inside of a Docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my data engineering projects.
 
 Specifically, setting up [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in Dev Containers - it requires Python 3.8, Anaconda, and the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/). Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
 
