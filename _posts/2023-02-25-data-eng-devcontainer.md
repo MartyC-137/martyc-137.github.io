@@ -8,19 +8,19 @@ tags:
   - VS Code
   - GitHub
 ---
-I recently discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of a docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my team to use at work. 
+I recently discovered [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which allows you to open a directory inside of a Docker container and use it as a complete development environment in [Visual Studio Code](https://code.visualstudio.com/) or [GitHub Codespaces](https://github.com/features/codespaces). Configuring an environment and installing all of the required dependencies for a project can be exceedingly difficult, so I thought it would be great to set up a reproducible environment for my data engineering projects
 
 Specifically, setting up [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/python/setup) for Snowflake peaked my interest in Dev Containers - it requires Python 3.8, Anaconda, and the [Snowpark Python Package](https://pypi.org/project/snowflake-snowpark-python/). Its fairly straightforward to set the above environment up, but after you do it a few times, you start to wonder if theres a better way. Turns out there is :smiley: Any time you start a new project, you can simply copy over your devcontainer to configure your environment.
 
 This Dev Container has a data engineering flavour - It likely won't suit all of your needs but hopefully it will be a great starting point for you.
 
-Dev Containers require you to have [Docker](https://www.docker.com/products/docker-desktop/) installed OR use [GitHub Codespaces](https://github.com/features/codespaces). Codespaces is now free for individual use (60 hours/month) and is worth checking out if you haven't tried it.
+Dev Containers require you to have [Docker](https://www.docker.com/products/docker-desktop/) installed OR use [GitHub Codespaces](https://github.com/features/codespaces). Codespaces is now free for individual use (60 hours/month) and is worth checking out if you haven't tried it. It is basically a cloud version of VS Code that uses GitHub's compute resources, which can be scaled if you need a more powerful virtual machine. [Here](https://github.blog/2023-02-28-10-things-you-didnt-know-you-could-do-with-github-codespaces/) is a great blog post of some of the benefits offered by GitHub Codespaces
 
 ## Getting Started
 
 **Option 1: Local VS Code**
 
-1. Clone the [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) and connect to it in VS Code:
+1. Clone this [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) and connect to it in VS Code:
 
 ```bash
 $ cd your/desired/repo/location
@@ -33,13 +33,15 @@ $ git clone https://github.com/MartyC-137/DataEng_devcontainer
    
 3. Wait for the container to build and the dependencies to install
    
+4. Start developing!
+   
 **Option 2: GitHub Codespaces**
 
 1. [`Fork` this repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer)
    
 2. From the forked repo in GitHub, select the green `<> Code` button and choose Codespaces
    
-3. Click `Create Codespace on Main`, or checkout a branch if you prefer
+3. Click `Create Codespace on Main` - you can checkout a branch once the environment is ready
    
 4. Wait for the container to build and the dependencies to install
    
@@ -47,7 +49,7 @@ $ git clone https://github.com/MartyC-137/DataEng_devcontainer
 
 ## Components of a Dev Container
 
-When you have the [`Dev Containers`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed and are setting up a new project, VS Code and GitHub Codespaces will automatically detect if you have a `.devcontainer` directory inside your repo. It is looking for a `devcontainer.json` file, although you can augment this with a `Dockerfile`, `requirements.txt`, etc. In the `.devcontainer` directory from my [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) you'll see the following:
+When you have the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed and are setting up a new project, VS Code and GitHub Codespaces will automatically detect if you have a `.devcontainer` directory inside your repo. It is looking for a `devcontainer.json` file, although you can augment this with a `Dockerfile`, `requirements.txt`, etc. In the `.devcontainer` directory from my [repo](https://github.com/MartyC-137/Data-Engineering-Devcontainer) you'll see the following:
 
 * `Dockerfile`
 * `devcontainer.json`
