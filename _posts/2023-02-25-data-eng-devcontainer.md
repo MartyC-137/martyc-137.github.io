@@ -1,5 +1,6 @@
 ---
 title: "Building a Dev Container for Data Engineering"
+tagline: "How to set up a custom development environment for Data Engineering"
 header:
   overlay_image: /assets/images/docker.jpg
   caption: "Photo credit: Ian Taylor on [**Unsplash**](https://unsplash.com)"
