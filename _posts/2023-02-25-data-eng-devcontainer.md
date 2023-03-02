@@ -1,5 +1,5 @@
 ---
-title: "Building a devcontainer for data engineering"
+title: "Building a Dev Container for Data Engineering"
 date: 2023-02-23T13:18:30-04:00
 categories:
   - blog
