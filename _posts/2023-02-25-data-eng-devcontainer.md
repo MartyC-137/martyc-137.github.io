@@ -1,5 +1,11 @@
 ---
 title: "Building a Dev Container for Data Engineering"
+header:
+  overlay_image: /assets/images/docker.jpg
+  caption: "Photo credit: Ian Taylor on [**Unsplash**](https://unsplash.com)"
+  actions:
+    - label: "Learn more"
+      url: "https://unsplash.com"
 date: 2023-02-23T13:18:30-04:00
 categories:
   - blog
