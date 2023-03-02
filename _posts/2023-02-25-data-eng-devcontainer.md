@@ -1,11 +1,12 @@
 ---
-title: "Building a Dev Container for Data Engineering"
-tagline: "How to set up a custom development environment for Data Engineering"
+title: "How I set up my Dev Container for Data Engineering"
+# tagline: "How to set up an awesome development environment for Data Engineering"
 header:
-  overlay_image: /assets/images/docker.jpg
+  image: /assets/images/docker.jpg
+#   overlay_image: /assets/images/docker.jpg
   caption: "Photo credit: Ian Taylor on [**Unsplash**](https://unsplash.com)"
   actions:
-    - label: "Learn more"
+    # - label: "Learn more"
       url: "https://unsplash.com"
 date: 2023-02-23T13:18:30-04:00
 categories:
@@ -231,5 +232,5 @@ This file has a few key components:
 
 And there you have it! You've now got an awesome development environment set up that is easily reproducible for new projects, shareable with others, etc. Happy Coding!
 
-<!-- ![image](/assets/images/devcontainer_blog/vs-code_dc.png) -->
-<img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="2500">
+![image](/assets/images/devcontainer_blog/vs-code_dc.png)
+<!-- <img src="/assets/images/devcontainer_blog/vs-code_dc.png" width="2500"> -->
