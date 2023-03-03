@@ -155,7 +155,6 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 
 			"extensions": [
 				"snowflake.snowflake-vsc",
-				"ms-mssql.mssql",
 				"golang.go",
 				"ms-vscode.powershell",
 				"ms-python.python",
@@ -175,7 +174,8 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 				"GitHub.github-vscode-theme",
 				"actboy168.tasks",
 				"bastienboutonnet.vscode-dbt",
-				"innoverio.vscode-dbt-power-user"
+				"innoverio.vscode-dbt-power-user",
+				"ms-mssql.mssql"
 			]
 		}
 	},
