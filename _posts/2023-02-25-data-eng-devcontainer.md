@@ -154,8 +154,8 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 			},
 
 			"extensions": [
-                "ms-mssql.mssql",
 				"snowflake.snowflake-vsc",
+                "ms-mssql.mssql",
 				"golang.go",
 				"ms-vscode.powershell",
 				"ms-python.python",
@@ -213,7 +213,7 @@ This file has a few key components:
     - GitLens
     - Popular VS Code Themes (GitHub, One Dark etc.)
     - `dbt` extensions
-    - `YAML` and `XML` tools. VS Code has a built in JSON formatter
+    - `YAML` and `XML` tools. VS Code has a built in `JSON` formatter
   
 * `postCreateCommand` - this line instructs our devcontainer to run the included `requirements.txt` file to `pip` install the following packages:
 
