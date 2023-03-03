@@ -1,6 +1,6 @@
 ---
 title: "How I set up my Dev Container for Data Engineering"
-tagline: "Setting up your environment can be a pain. Dev Containers make it easier"
+tagline: "Setting up an environment can be a pain. Dev Containers make it easier"
 header:
   overlay_image: /assets/images/docker.jpg
   caption: "Photo credit: Ian Taylor on [**Unsplash**](https://unsplash.com)"
