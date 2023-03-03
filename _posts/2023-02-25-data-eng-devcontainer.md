@@ -161,6 +161,7 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"redhat.vscode-yaml",
+				"redhat.vscode-xml",
 				"ms-vscode-remote.remote-containers",
 				"ms-toolsai.jupyter",
 				"eamodio.gitlens",
@@ -212,6 +213,7 @@ This file has a few key components:
     - GitLens
     - Popular VS Code Themes (GitHub, One Dark etc.)
     - `dbt` extensions
+    - `YAML` and `XML` tools. VS Code has a built in JSON formatter
   
 * `postCreateCommand` - this line instructs our devcontainer to run the included `requirements.txt` file to `pip` install the following packages:
 
