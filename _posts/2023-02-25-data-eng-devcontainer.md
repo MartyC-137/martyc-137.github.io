@@ -175,7 +175,9 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 				"actboy168.tasks",
 				"bastienboutonnet.vscode-dbt",
 				"innoverio.vscode-dbt-power-user",
-				"ms-mssql.mssql"
+				"ms-mssql.mssql",
+				"adpyke.vscode-sql-formatter",
+				"inferrinizzard.prettier-sql-vscode"
 			]
 		}
 	},
@@ -214,6 +216,7 @@ This file has a few key components:
     - Popular VS Code Themes (GitHub, One Dark etc.)
     - `dbt` extensions
     - `YAML` and `XML` tools. VS Code has a built in `JSON` formatter
+    - `SQL` Formatting tools
   
 * `postCreateCommand` - this line instructs our devcontainer to run the included `requirements.txt` file to `pip` install the following packages:
 
