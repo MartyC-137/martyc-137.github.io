@@ -155,7 +155,7 @@ Next, lets take a look at the `devcontainer.json` file. Here is what ours looks 
 
 			"extensions": [
 				"snowflake.snowflake-vsc",
-                "ms-mssql.mssql",
+				"ms-mssql.mssql",
 				"golang.go",
 				"ms-vscode.powershell",
 				"ms-python.python",
