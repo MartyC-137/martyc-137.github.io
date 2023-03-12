@@ -2,8 +2,8 @@
 title: "Creating Python stored procedures in Snowflake"
 tagline: "How to use Python functionality on the Snowflake platform"
 header:
-  overlay_image: /assets/images/mac.jpg
-  caption: "Photo credit: [Altum Code](https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [**Unsplash**](https://unsplash.com)"
+  overlay_image: /assets/images/library.jpg
+  caption: "Photo credit: [Tobias Fischer](https://unsplash.com/@tofi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [**Unsplash**](https://unsplash.com)"
   actions:
     # - label: "Learn more"
       url: "https://unsplash.com"
