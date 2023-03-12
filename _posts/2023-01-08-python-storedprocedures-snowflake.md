@@ -163,11 +163,13 @@ cd ./Users/johndoe/documents/
 New-Item .gitignore
 Add-Content .gitignore '.env'
 
-#Using aliases:
+#using aliases:
 cd ./Users/johndoe/documents/
 ni .gitignore
 ac .gitignore '.env'
 ```
+
+If you prefer bash: 
 
 ```bash
 #!/usr/bin/env bash
