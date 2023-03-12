@@ -155,10 +155,24 @@ print(session.sql('''SELECT CURRENT_WAREHOUSE(),
 
 In the previous block of code, my Snowflake credentials are hidden in a `.env` file, and I load them into the python script using the `python-dotenv` library. 
 
-Since the `.env` file contains your Snowflake secrets, you don't want to add it to your cloud repo! Make sure you add `.env` to your `gitignore` by running the following command in a terminal:
+Since the `.env` file contains your Snowflake secrets, you don't want to add it to your cloud repo! Make sure you add `.env` to your `gitignore` by running the following command in a terminal. I use Powershell:
+
+```powershell
+#!/usr/bin/env pwsh
+cd ./Users/johndoe/documents/
+New-Item .gitignore
+Add-Content .gitignore '.env'
+
+#Using aliases:
+cd ./Users/johndoe/documents/
+ni .gitignore
+ac .gitignore '.env'
+```
 
 ```bash
+#!/usr/bin/env bash
 cd <your_repo>
+touch .gitignore 
 echo '.env' >> .gitignore
 ```
 
