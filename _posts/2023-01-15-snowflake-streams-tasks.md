@@ -1,5 +1,12 @@
 ---
 title: "Streams and Tasks workflow in Snowflake"
+tagline: "Minimize nested views and increase SQL query performance"
+header:
+  overlay_image: /assets/images/abstract.jpg
+  caption: "Photo credit: [Resource Database](https://unsplash.com/@resourcedatabase?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [**Unsplash**](https://unsplash.com)"
+  actions:
+    # - label: "Learn more"
+      url: "https://unsplash.com"
 date: 2023-01-15T13:18:30-04:00
 categories:
   - blog
