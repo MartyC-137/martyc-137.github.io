@@ -1,5 +1,12 @@
 ---
 title: "Creating Python stored procedures in Snowflake"
+tagline: "How to use Python functionality on the Snowflake platform"
+header:
+  overlay_image: /assets/images/mac.jpg
+  caption: "Photo credit: [Altum Code](https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [**Unsplash**](https://unsplash.com)"
+  actions:
+    # - label: "Learn more"
+      url: "https://unsplash.com"
 date: 2023-01-08T20:08:30-04:00
 categories:
   - blog
